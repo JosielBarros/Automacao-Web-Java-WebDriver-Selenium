@@ -12,8 +12,6 @@ public class AdicionarProdutoPage extends BasePage{
     private WebElement campoNomeCores;
     @FindBy(css = "button[name=action]")
     private WebElement botaoSalvarProduto;
-    @FindBy(css = ".toast.rounded")
-    private WebElement tostMensagem;
 
     public AdicionarProdutoPage preencherDadosObrigatoriosProduto(String nomeProduto, String valorProduto){
         campoNomeProduto.sendKeys(nomeProduto);
@@ -27,8 +25,5 @@ public class AdicionarProdutoPage extends BasePage{
     public AdicionarProdutoPage clicarEmSalvar(){
         botaoSalvarProduto.click();
         return this;
-    }
-    public String capturarMensagemDeErro(){
-        return tostMensagem.getText();
     }
 }

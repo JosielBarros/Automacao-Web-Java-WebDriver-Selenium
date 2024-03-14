@@ -10,8 +10,9 @@ public class LoginPage extends BasePage{
     private WebElement campoSenha;
     @FindBy(css = "button[type=submit]")
     private WebElement botaoEntrar;
-    public LoginPage(){
+    public LoginPage abrirPaginaLogin(){
         Environment.browser.get(super.BASE_URL);
+        return this;
     }
     public LoginPage preencherFormularioLogin(String usuario, String senha) {
         campoUsuario.sendKeys(usuario);

@@ -7,6 +7,10 @@ public class ListaProdutosPage extends BasePage{
     private WebElement botaoAdicionarProduto;
     @FindBy(css = "#nav-mobile > li > a")
     private WebElement nomeUsuario;
+
+    public WebElement getBotaoAdicionarProduto() {
+        return botaoAdicionarProduto;
+    }
     public AdicionarProdutoPage clicarAdicionarProduto(){
         botaoAdicionarProduto.click();
         return new AdicionarProdutoPage();

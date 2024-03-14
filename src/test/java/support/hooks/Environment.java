@@ -38,6 +38,6 @@ public class Environment {
         int largura = (Objects.equals(mobile, "true") ? 360 : 1366);
         int altura = (Objects.equals(mobile, "true") ? 740 : 768);
         browser.manage().window().setSize(new Dimension(largura, altura));
-        browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        browser.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 }
