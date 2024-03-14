@@ -12,6 +12,8 @@ public class AdicionarProdutoPage extends BasePage{
     private WebElement campoNomeCores;
     @FindBy(css = "button[name=action]")
     private WebElement botaoSalvarProduto;
+    @FindBy(xpath = "//a[text()='Lista de Produtos']")
+    private WebElement botaoListaProdutos;
 
     public AdicionarProdutoPage preencherDadosObrigatoriosProduto(String nomeProduto, String valorProduto){
         campoNomeProduto.sendKeys(nomeProduto);
@@ -25,5 +27,9 @@ public class AdicionarProdutoPage extends BasePage{
     public AdicionarProdutoPage clicarEmSalvar(){
         botaoSalvarProduto.click();
         return this;
+    }
+    public ListaProdutosPage clicarListaProdutos(){
+        botaoListaProdutos.click();
+        return new ListaProdutosPage();
     }
 }

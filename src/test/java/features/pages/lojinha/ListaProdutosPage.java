@@ -7,6 +7,8 @@ public class ListaProdutosPage extends BasePage{
     private WebElement botaoAdicionarProduto;
     @FindBy(css = "#nav-mobile > li > a")
     private WebElement nomeUsuario;
+    @FindBy(css = ".title > a")
+    private WebElement tituloProduto;
 
     public WebElement getBotaoAdicionarProduto() {
         return botaoAdicionarProduto;
@@ -17,5 +19,9 @@ public class ListaProdutosPage extends BasePage{
     }
     public String capturarNomeUsuarioNaPaginaSecreta(){
         return nomeUsuario.getText();
+    }
+
+    public String capturarTituloProduto(){
+        return tituloProduto.getText();
     }
 }
