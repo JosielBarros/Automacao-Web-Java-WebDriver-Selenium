@@ -19,8 +19,28 @@ public class LoginTest {
             .capturarNomeUsuarioNaPaginaSecreta();
         Assertions.assertEquals("Boas vindas, Jhon!", boasVindasUsuario);
     }
-    @AfterEach
-    public void tearDown(){
-        Environment.browser.quit();
+    @Test
+    @DisplayName("Validar que não é possível acessar a página secreta com credenciais inválidas")
+    public void testValidarQueNaoEPossivelAcessarAPaginaSecretaComCredenciaisInvalidas(){
+        String mensagemErro = submeterFormulario("usuario_invalido", "senha_invalida")
+            .capturarMensagem();
+
+        Assertions.assertEquals("Falha ao fazer o login", mensagemErro);
+        Assertions.assertFalse(elementVisible(paginaListaProdutos().getBotaoAdicionarProduto()));
+    }
+    @Test
+    @DisplayName("Validar mensagem de erro ao tentar acessar a página secreta sem credenciais de usuario e senha")
+    public void testValidarMensagemDeErroAoTentarAcessarAPaginaSecretaSemCredenciaisDeUsuarioESenha(){
+        String mensagemErro = submeterFormulario("", "")
+            .capturarMensagem();
+
+        Assertions.assertEquals("Falha ao fazer o login", mensagemErro);
+        Assertions.assertFalse(elementVisible(paginaListaProdutos().getBotaoAdicionarProduto()));
+    }
+    private ListaProdutosPage submeterFormulario(String usuario, String senha){
+        return paginaLogin()
+            .abrirPaginaLogin()
+            .preencherFormularioLogin(usuario, senha)
+            .submeterFormulario();
     }
 }
