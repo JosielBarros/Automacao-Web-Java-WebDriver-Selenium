@@ -8,8 +8,8 @@ import static io.restassured.RestAssured.given;
 
 public class ApiCommands {
     private static final String PATH = "http://165.227.93.41/lojinha/v2/";
-    public static void removerProdutosDoUsuario() {
-        String token = given()
+    private static String gerarToken(){
+        return given()
             .contentType(ContentType.JSON)
             .body("{\n" +
                     "  \"usuarioLogin\": \"jhon\",\n" +
@@ -21,9 +21,24 @@ public class ApiCommands {
             .statusCode(HttpStatus.SC_OK)
             .extract()
                 .path("data.token");
-
+    }
+    public static void cadastrarProdutoDoUsuario(){
+        given()
+            .contentType(ContentType.JSON)
+            .header("token", gerarToken())
+            .body("{\n" +
+                    "  \"produtoNome\": \"MacBook\",\n" +
+                    "  \"produtoValor\": 5592.25,\n" +
+                    "  \"produtoCores\": []\n" +
+                    "}")
+        .when()
+            .post(PATH + "produtos")
+        .then()
+            .statusCode(HttpStatus.SC_CREATED);
+    }
+    public static void removerProdutosDoUsuario() {
         List< Integer > ids = given()
-            .header("token", token)
+            .header("token", gerarToken())
         .when()
             .get(PATH + "produtos")
         .then()
@@ -36,7 +51,7 @@ public class ApiCommands {
         if(!ids.isEmpty()){
             for (Integer id : ids) {
                 given()
-                    .header("token", token)
+                    .header("token", gerarToken())
                 .when()
                     .delete(PATH + "produtos/" + id)
                 .then()
