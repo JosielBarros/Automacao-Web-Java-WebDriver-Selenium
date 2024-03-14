@@ -16,7 +16,4 @@ public class BasePage {
     public String capturarMensagem() {
         return tostMensagem.getText();
     }
-    public boolean elementoVisivel(WebElement elemento) {
-        return elementVisible(elemento);
-    }
 }
