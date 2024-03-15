@@ -26,13 +26,13 @@ public class AdicionarProdutoTest extends TestBase {
     @Test
     @DisplayName("Validar que não é possível cadastrar um produto com valor zero")
     public void testValidarQueNaoEPossivelCadastrarUmProdutoComValorZero(){
-        String mensagem = cadastrarProdutoComValor("000");
+        String mensagem = cadastrarProdutoComValor("0,00");
         Assertions.assertEquals("O valor do produto deve estar entre R$ 0,01 e R$ 7.000,00", mensagem);
     }
     @Test
     @DisplayName("Validar que não é possível cadastrar um produto com valor maior que 7000.00")
     public void testValidarQueNaoEPossivelCadastrarUmProdutoComValorMaiorQueSeteMil(){
-        String mensagem = cadastrarProdutoComValor("700001");
+        String mensagem = cadastrarProdutoComValor("7000,01");
         Assertions.assertEquals("O valor do produto deve estar entre R$ 0,01 e R$ 7.000,00", mensagem);
     }
     private String cadastrarProdutoComValor(String valor){
@@ -43,7 +43,6 @@ public class AdicionarProdutoTest extends TestBase {
             .submeterFormulario()
             .clicarAdicionarProduto()
             .preencherDadosObrigatoriosProduto(tituloProduto, valor)
-            .preencherCoresProduto("Preto, Amarelo")
             .clicarEmSalvar()
             .capturarMensagem();
     }

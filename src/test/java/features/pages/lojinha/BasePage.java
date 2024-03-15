@@ -4,8 +4,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import support.hooks.Environment;
 
-import static support.commands.Commands.elementVisible;
-
 public class BasePage {
     @FindBy(css = ".toast.rounded")
     private WebElement tostMensagem;
@@ -15,5 +13,8 @@ public class BasePage {
     }
     public String capturarMensagem() {
         return tostMensagem.getText();
+    }
+    public String capturarTextoDoElemento(WebElement elemento){
+        return elemento.getText();
     }
 }

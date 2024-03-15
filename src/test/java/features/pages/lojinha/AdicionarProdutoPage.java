@@ -16,12 +16,10 @@ public class AdicionarProdutoPage extends BasePage{
     private WebElement botaoListaProdutos;
 
     public AdicionarProdutoPage preencherDadosObrigatoriosProduto(String nomeProduto, String valorProduto){
+        campoNomeProduto.clear();
         campoNomeProduto.sendKeys(nomeProduto);
+        campoValorProduto.clear();
         campoValorProduto.sendKeys(valorProduto);
-        return this;
-    }
-    public AdicionarProdutoPage preencherCoresProduto(String coresProduto){
-        campoNomeCores.sendKeys(coresProduto);
         return this;
     }
     public AdicionarProdutoPage clicarEmSalvar(){

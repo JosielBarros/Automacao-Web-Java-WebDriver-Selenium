@@ -11,6 +11,8 @@ public class ListaProdutosPage extends BasePage{
     private WebElement tituloProduto;
     @FindBy(css = "a .material-icons")
     private WebElement botaoRemoverProduto;
+    @FindBy(css = ".collection-item.avatar p")
+    private WebElement valorProduto;
 
     public WebElement getBotaoAdicionarProduto() {
         return botaoAdicionarProduto;
@@ -20,11 +22,11 @@ public class ListaProdutosPage extends BasePage{
         return new AdicionarProdutoPage();
     }
     public String capturarNomeUsuarioNaPaginaSecreta(){
-        return nomeUsuario.getText();
+        return capturarTextoDoElemento(nomeUsuario);
     }
 
     public String capturarTituloProduto(){
-        return tituloProduto.getText();
+        return capturarTextoDoElemento(tituloProduto);
     }
     public ListaProdutosPage clicarEmRemoverProduto(){
         botaoRemoverProduto.click();
@@ -32,5 +34,12 @@ public class ListaProdutosPage extends BasePage{
     }
     public WebElement getBotaoRemoverProduto() {
         return botaoRemoverProduto;
+    }
+    public AdicionarProdutoPage clicarEmUmProduto(){
+        tituloProduto.click();
+        return new AdicionarProdutoPage();
+    }
+    public String capturarValorProduto(){
+        return capturarTextoDoElemento(valorProduto);
     }
 }
